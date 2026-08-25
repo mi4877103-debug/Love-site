@@ -1,38 +1,257 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <title>hey,Sohana</title>
-  <style>
-    body {
-      background: linear-gradient(to right, #6a11cb, #2575fc);
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      color: white;
-      margin: 0;
-      padding: 0;
-    }
-    h1 {
-      margin-top: 100px;
-      font-size: 60px;
-      animation: glow 2s infinite alternate;
-    }
-    p {
-      font-size: 22px;
-      margin-top: 20px;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #fff; }
-      to { text-shadow: 0 0 20px #ff0; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Special One ❤️</title>
+    <style>
+        /* পুরো পেজের ডিজাইন */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffe5ec, #ffb3c6);
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* শুরুতে আসার লক স্ক্রিন */
+        #lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffb3c6, #ffe5ec);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        /* আনলক বাটন */
+        .unlock-btn {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: 0.3s ease;
+        }
+
+        .unlock-btn:hover {
+            transform: scale(1.1);
+            background: #ff758f;
+        }
+
+        /* মূল কার্ড কন্টেইনার (গ্লাসমমরফিজম) */
+        .container {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+        }
+
+        /* আনলক করার পর মেইন কার্ড শো করার ক্লাস */
+        .container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* জিএফ এর ছবির ডিজাইন */
+        .gf-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff4d6d;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .gf-pic:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        /* টাইপরাইটার টেক্সট */
+        .message {
+            font-size: 18px;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            min-height: 50px;
+        }
+
+        /* কাউন্টার বক্স */
+        .counter-title {
+            color: #ff758f;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .counter {
+            display: flex;
+            justify-content: space-around;
+            background: #ff4d6d;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        .time-box {
+            font-size: 14px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* ফ্লোটিং হার্ট অ্যানিমেশন */
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatUp 6s linear infinite;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>🌍 I Love you 🌍</h1>
-  <p>ummmmmmmmmmmmmah!</p>
 
-  
-  <button onclick="window.location.href='page2.html'">Explore</button>
+    <!-- লক স্ক্রিন (শুরুতে এটি দেখাবে) -->
+    <div id="lock-screen">
+        <h2 style="color: #ff4d6d; margin-bottom: 20px;">Hey Cutie, I have a surprise for you! 😉</h2>
+        <button class="unlock-btn" onclick="unlockSite()">Click to Unlock My Heart ❤️</button>
+    </div>
 
+    <!-- অডিও প্লেয়ার (গান) -->
+    <!-- src এর ভেতর আপনার প্রিয় রোমান্টিক গানের লিংকের নাম দিন (যেমন: music.mp3) -->
+    <audio id="bg-music" src="music.mp3" loop></audio>
+
+    <!-- মূল কন্টেন্ট কার্ড -->
+    <div class="container" id="main-card">
+        <img src="gf.jpg" alt="My Love" class="gf-pic">
+        <h1 id="headline">Hey Beautiful... ❤️</h1>
+        <p class="message" id="typewriter"></p>
+
+        <!-- লাভ কাউন্টার -->
+        <div class="counter-title">হৃদয় জুড়ে তুমি আছো ঠিক...</div>
+        <div class="counter">
+            <div class="time-box"><span id="days">00</span>দিন</div>
+            <div class="time-box"><span id="hours">00</span>ঘণ্টা</div>
+            <div class="time-box"><span id="minutes">00</span>মিনিট</div>
+            <div class="time-box"><span id="seconds">00</span>সেকেন্ড</div>
+        </div>
+    </div>
+
+    <script>
+        // ১. সাইট আনলক এবং মিউজিক প্লে করার ফাংশন
+        function unlockSite() {
+            // লক স্ক্রিন হাইড করা
+            const lockScreen = document.getElementById("lock-screen");
+            lockScreen.style.opacity = "0";
+            lockScreen.style.transform = "scale(0.9)";
+            setTimeout(() => lockScreen.style.display = "none", 800);
+
+            // মূল কার্ড শো করা
+            document.getElementById("main-card").classList.add("show");
+
+            // গান চালু করা
+            const music = document.getElementById("bg-music");
+            music.play().catch(error => console.log("Music play blocked:", error));
+
+            // টাইপরাইটার চালু করা
+            typeWriter();
+        }
+
+        // ২. টাইপরাইটার ইফেক্ট টেক্সট 
+        const text = "তুমি আমার জীবনের সবচেয়ে সুন্দর গল্প। প্রথম যেদিন তোমার সাথে কথা হয়েছিল, সেদিন থেকেই আমার পুরো পৃথিবীটা বদলে গেছে। সারাজীবন এভাবেই তোমার হাতটি ধরে পাশে থাকতে চাই। আই লাভ ইউ! 😘";
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100); 
+            }
+        }
+
+        // ৩. লাভ কাউন্টার (রিলেশন শুরুর তারিখ)
+        // ফরম্যাট: Year, Month (জানুয়ারি=০, ফেব্রুয়ারি=১, মে=৪), Day
+        const anniversaryDate = new Date(2024, 4, 15, 0, 0, 0); 
+
+        function updateCounter() {
+            const now = new Date();
+            const difference = now - anniversaryDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+        setInterval(updateCounter, 1000);
+
+        // ৪. ব্যাকগ্রাউন্ড হার্ট অ্যানিমেশন
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's'; 
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+        setInterval(createHeart, 300); 
+    </script>
 </body>
 </html>
