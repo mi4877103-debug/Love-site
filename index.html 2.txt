@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>My Special World</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 100px;
+      font-size: 60px;
+      animation: glow 2s infinite alternate;
+    }
+    p {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 20px #ff0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🌍 My Special World 🌍</h1>
+  <p>এখানে শুরু হলো আমার নতুন ওয়েবসাইট!</p>
+
+  <!-- এখানে বাটন লিখো -->
+  <button onclick="window.location.href='page2.html'">Explore</button>
+
+</body>
+</html>
