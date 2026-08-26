@@ -1,257 +1,208 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Special One ❤️</title>
+    <title>For My Queen 💖</title>
     <style>
-        /* পুরো পেজের ডিজাইন */
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #ffe5ec, #ffb3c6);
-            font-family: 'Arial', sans-serif;
-            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            overflow: hidden;
             text-align: center;
         }
-
-        /* শুরুতে আসার লক স্ক্রিন */
-        #lock-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* Page 1 Styles */
+        .page {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #ffb3c6, #ffe5ec);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 100;
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            padding: 20px;
+            transition: all 0.8s ease-in-out;
+            position: absolute;
         }
-
-        /* আনলক বাটন */
-        .unlock-btn {
-            background: #ff4d6d;
+        #page2 {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9);
+            background: linear-gradient(135deg, #2b001d, #4a002c);
+            color: white;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #ff477e;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        #page2 h1 {
+            color: #ff85a2;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 40px;
+        }
+        #page2 p {
+            color: #f7cad0;
+        }
+        .btn-heart {
+            background-color: #ff477e;
             color: white;
             border: none;
             padding: 15px 35px;
-            font-size: 20px;
+            font-size: 1.3rem;
             font-weight: bold;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
-            transition: 0.3s ease;
+            box-shadow: 0 10px 20px rgba(255, 71, 126, 0.4);
+            transition: transform 0.3s, background-color 0.3s;
+            animation: pulse 1.5s infinite;
         }
-
-        .unlock-btn:hover {
+        .btn-heart:hover {
             transform: scale(1.1);
-            background: #ff758f;
+            background-color: #ff0a54;
         }
-
-        /* মূল কার্ড কন্টেইনার (গ্লাসমমরফিজম) */
-        .container {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 90%;
-            z-index: 10;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-
-        /* আনলক করার পর মেইন কার্ড শো করার ক্লাস */
-        .container.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /*78853c27-3f81-4e27-855b-bdf8ac77e89b  */
-        .gf-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #ff4d6d;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .gf-pic:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        h1 {
-            color: #ff4d6d;
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        /* টাইপরাইটার টেক্সট */
-        .message {
-            font-size: 18px;
-            color: #4a4a4a;
-            line-height: 1.6;
+        /* Page 2 - Animation Styles */
+        .animation-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
             margin-bottom: 30px;
-            min-height: 50px;
         }
-
-        /* কাউন্টার বক্স */
-        .counter-title {
-            color: #ff758f;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .counter {
-            display: flex;
-            justify-content: space-around;
-            background: #ff4d6d;
-            color: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
-        }
-
-        .time-box {
-            font-size: 14px;
-        }
-
-        .time-box span {
-            display: block;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        /* ফ্লোটিং হার্ট অ্যানিমেশন */
-        .heart {
+        .hand {
+            font-size: 5rem;
             position: absolute;
-            color: #ff4d6d;
-            font-size: 20px;
-            pointer-events: none;
-            animation: floatUp 6s linear infinite;
-            opacity: 0.8;
-            z-index: 1;
+            transition: all 1.5s ease-in-out;
         }
-
+        .girl-hand {
+            left: 20px;
+            top: 50px;
+            transform: scaleX(-1); /* Flips the hand to face right */
+        }
+        .boy-hand {
+            right: 20px;
+            top: 50px;
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        .ring {
+            font-size: 2rem;
+            position: absolute;
+            right: 95px;
+            top: 85px;
+            opacity: 0;
+            transition: all 1.5s ease-in-out;
+            transform: scale(0.5);
+        }
+        /* Active Animation Triggered by JS */
+        .start-anim .boy-hand {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .start-anim .ring {
+            opacity: 1;
+            transform: translate(-95px, 0px) scale(1); /* Moves ring onto girl's finger */
+            transition-delay: 0.5s;
+        }
+        /* Floating Hearts Background */
+        .hearts-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+        }
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 71, 126, 0.6);
+            animation: floatUp 4s linear infinite;
+        }
         @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) scale(1.5);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) scale(0); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- লক স্ক্রিন (শুরুতে এটি দেখাবে) -->
-    <div id="lock-screen">
-        <h2 style="color: #ff4d6d; margin-bottom: 20px;">Hey JANU, I have a surprise for you! 😉</h2>
-        <button class="unlock-btn" onclick="unlockSite()">Click to Unlock My Heart ❤️</button>
+    <!-- FIRST PAGE -->
+    <div id="page1" class="page">
+        <h1>Hey Beautiful.. ❤️</h1>
+        <p>তোমার জন্য ছোট্ট একটা সারপ্রাইজ আছে। দেখতে চাইলে নিচের বাটনে চাপ দাও!</p>
+        <button class="btn-heart" onclick="nextPage()">এখানে চাপ দাও 💖</button>
     </div>
 
-    <!-- অডিও প্লেয়ার (গান) -->
-    <!-- src এর ভেতর আপনার প্রিয় রোমান্টিক গানের লিংকের নাম দিন (যেমন: music.mp3) -->
-    <audio id="bg-music" src="music.mp3" loop></audio>
-
-    <!-- মূল কন্টেন্ট কার্ড -->
-    <div class="container" id="main-card">
-        <img src="gf.jpg" alt="My Love" class="gf-pic">
-        <h1 id="headline">Hey SOHANA ... ❤️</h1>
-        <p class="message" id="typewriter"></p>
-
-        <!-- লাভ কাউন্টার -->
-        <div class="counter-title">হৃদয় জুড়ে তুমি আছো ঠিক...</div>
-        <div class="counter">
-            <div class="time-box"><span id="days">00</span>দিন</div>
-            <div class="time-box"><span id="hours">00</span>ঘণ্টা</div>
-            <div class="time-box"><span id="minutes">00</span>মিনিট</div>
-            <div class="time-box"><span id="seconds">00</span>সেকেন্ড</div>
+    <!-- SECOND PAGE -->
+    <div id="page2" class="page">
+        <h1>Will You Be Mine Forever? 💍</h1>
+        
+        <div class="animation-container" id="animContainer">
+            <!-- Girl's Hand -->
+            <div class="hand girl-hand">🫱</div>
+            <!-- Boy's Hand holding ring conceptually -->
+            <div class="hand boy-hand">🫲</div>
+            <!-- The Ring that will slide into finger -->
+            <div class="ring">💍</div>
         </div>
+
+        <p>আজীবন তোমার হাতটা এভাবেই ধরে রাখতে চাই!</p>
     </div>
+
+    <div class="hearts-bg" id="heartsBg"></div>
 
     <script>
-        // ১. সাইট আনলক এবং মিউজিক প্লে করার ফাংশন
-        function unlockSite() {
-            // লক স্ক্রিন হাইড করা
-            const lockScreen = document.getElementById("lock-screen");
-            lockScreen.style.opacity = "0";
-            lockScreen.style.transform = "scale(0.9)";
-            setTimeout(() => lockScreen.style.display = "none", 800);
+        function nextPage() {
+            // Hide page 1, show page 2
+            document.getElementById('page1').style.opacity = '0';
+            document.getElementById('page1').style.pointerEvents = 'none';
+            
+            const page2 = document.getElementById('page2');
+            page2.style.opacity = '1';
+            page2.style.pointerEvents = 'auto';
+            page2.style.transform = 'scale(1)';
 
-            // মূল কার্ড শো করা
-            document.getElementById("main-card").classList.add("show");
-
-            // গান চালু করা
-            const music = document.getElementById("bg-music");
-            music.play().catch(error => console.log("Music play blocked:", error));
-
-            // টাইপরাইটার চালু করা
-            typeWriter();
-        }
-
-        // ২. টাইপরাইটার ইফেক্ট টেক্সট 
-        const text = "তোমার সাথে আমার সম্পর্কটা যেন এক নদী আর সমুদ্রের-নদী যেমন নিজের সবটুকু ভালোবাসা ঢেলে দেয় সমুদ্রের পানে , তেমনই-তোমার মাজে পূর্ণ হতে চাই । তুমি আমার আকাশ যার নিচে আমি রোদ , বৃষ্টি , ঝড , সব মেনে নিয়ে বাচতে শিখেছি । প্রকৃতির মতই তুমি অনিশিচত , তবু অসীম সন্দর  😘";
-        let index = 0;
-
-        function typeWriter() {
-            if (index < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(index);
-                index++;
-                setTimeout(typeWriter, 100); 
-            }
-        }
-
-        // ৩. লাভ কাউন্টার (রিলেশন শুরুর তারিখ)
-        // ফরম্যাট: Year, Month (জানুয়ারি=০, ফেব্রুয়ারি=১, মে=৪), Day
-        const anniversaryDate = new Date(2025, 10, 4, 0, 0, 0); 
-
-        function updateCounter() {
-            const now = new Date();
-            const difference = now - anniversaryDate;
-
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-        }
-        setInterval(updateCounter, 1000);
-
-        // ৪. ব্যাকগ্রাউন্ড হার্ট অ্যানিমেশন
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 3 + 's'; 
-            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-            document.body.appendChild(heart);
-
+            // Start the hand and ring animation after a short delay
             setTimeout(() => {
-                heart.remove();
-            }, 6000);
+                document.getElementById('animContainer').classList.add('start-anim');
+                startHearts();
+            }, 300);
         }
-        setInterval(createHeart, 300); 
+
+        // Background heart floating effect
+        function startHearts() {
+            const bg = document.getElementById('heartsBg');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('floating-heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                bg.appendChild(heart);
+
+                // Remove heart after animation ends
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, 300);
+        }
     </script>
 </body>
 </html>
