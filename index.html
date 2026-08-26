@@ -1,208 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Queen 💖</title>
+    <title>Will You Marry Me?</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            text-align: center;
-        }
-        /* Page 1 Styles */
-        .page {
-            width: 100%;
-            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
-            transition: all 0.8s ease-in-out;
-            position: absolute;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffe6ea, #ffb3c1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            transition: background 1s ease;
         }
-        #page2 {
-            opacity: 0;
-            pointer-events: none;
-            transform: scale(0.9);
-            background: linear-gradient(135deg, #2b001d, #4a002c);
-            color: white;
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 90%;
+            width: 400px;
+            z-index: 10;
         }
+
         h1 {
+            color: #d90429;
             font-size: 2.5rem;
-            color: #ff477e;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
         }
-        #page2 h1 {
-            color: #ff85a2;
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 60px;
         }
-        p {
+
+        button {
+            padding: 12px 35px;
             font-size: 1.2rem;
-            color: #6c757d;
-            margin-bottom: 40px;
-        }
-        #page2 p {
-            color: #f7cad0;
-        }
-        .btn-heart {
-            background-color: #ff477e;
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.3rem;
             font-weight: bold;
+            border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(255, 71, 126, 0.4);
-            transition: transform 0.3s, background-color 0.3s;
-            animation: pulse 1.5s infinite;
+            transition: transform 0.2s;
         }
-        .btn-heart:hover {
+
+        #yesBtn {
+            background-color: #2ecc71;
+            color: white;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+            z-index: 5;
+        }
+
+        #yesBtn:hover {
             transform: scale(1.1);
-            background-color: #ff0a54;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        /* Page 2 - Animation Styles */
-        .animation-container {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            margin-bottom: 30px;
-        }
-        .hand {
-            font-size: 5rem;
+
+        #noBtn {
+            background-color: #e74c3c;
+            color: white;
             position: absolute;
-            transition: all 1.5s ease-in-out;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+            transition: all 0.1s ease;
+            z-index: 5;
         }
-        .girl-hand {
-            left: 20px;
-            top: 50px;
-            transform: scaleX(-1); /* Flips the hand to face right */
-        }
-        .boy-hand {
-            right: 20px;
-            top: 50px;
-            opacity: 0;
-            transform: translateX(100px);
-        }
-        .ring {
-            font-size: 2rem;
+
+        /* হার্ট অ্যানিমেশনের স্টাইল */
+        .heart {
             position: absolute;
-            right: 95px;
-            top: 85px;
-            opacity: 0;
-            transition: all 1.5s ease-in-out;
-            transform: scale(0.5);
-        }
-        /* Active Animation Triggered by JS */
-        .start-anim .boy-hand {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .start-anim .ring {
-            opacity: 1;
-            transform: translate(-95px, 0px) scale(1); /* Moves ring onto girl's finger */
-            transition-delay: 0.5s;
-        }
-        /* Floating Hearts Background */
-        .hearts-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+            color: #ff4d6d;
+            font-size: 24px;
+            position: fixed;
+            top: -10%;
+            user-select: none;
             pointer-events: none;
-            top: 0;
-            left: 0;
+            animation: fall linear forwards;
+            z-index: 1;
         }
-        .floating-heart {
-            position: absolute;
-            color: rgba(255, 71, 126, 0.6);
-            animation: floatUp 4s linear infinite;
-        }
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0); opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- FIRST PAGE -->
-    <div id="page1" class="page">
-        <h1>Hey Beautiful.. ❤️</h1>
-        <p>তোমার জন্য ছোট্ট একটা সারপ্রাইজ আছে। দেখতে চাইলে নিচের বাটনে চাপ দাও!</p>
-        <button class="btn-heart" onclick="nextPage()">এখানে চাপ দাও 💖</button>
-    </div>
-
-    <!-- SECOND PAGE -->
-    <div id="page2" class="page">
-        <h1>Will You Be Mine Forever? 💍</h1>
-        
-        <div class="animation-container" id="animContainer">
-            <!-- Girl's Hand -->
-            <div class="hand girl-hand">🫱</div>
-            <!-- Boy's Hand holding ring conceptually -->
-            <div class="hand boy-hand">🫲</div>
-            <!-- The Ring that will slide into finger -->
-            <div class="ring">💍</div>
+    <div class="container">
+        <h1 id="question">Will you marry me? 💍</h1>
+        <div class="btn-group">
+            <button id="yesBtn" onclick="celebrate()">Yes</button>
+            <button id="noBtn">No</button>
         </div>
-
-        <p>আজীবন তোমার হাতটা এভাবেই ধরে রাখতে চাই!</p>
     </div>
-
-    <div class="hearts-bg" id="heartsBg"></div>
 
     <script>
-        function nextPage() {
-            // Hide page 1, show page 2
-            document.getElementById('page1').style.opacity = '0';
-            document.getElementById('page1').style.pointerEvents = 'none';
-            
-            const page2 = document.getElementById('page2');
-            page2.style.opacity = '1';
-            page2.style.pointerEvents = 'auto';
-            page2.style.transform = 'scale(1)';
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const question = document.getElementById('question');
 
-            // Start the hand and ring animation after a short delay
-            setTimeout(() => {
-                document.getElementById('animContainer').classList.add('start-anim');
-                startHearts();
-            }, 300);
+        // 'No' বাটন দূরে সরিয়ে দেওয়ার ফাংশন
+        function moveNoButton() {
+            const padding = 60;
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding * 2) + padding;
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding * 2) + padding;
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = ${x}px;
+            noBtn.style.top = ${y}px;
         }
 
-        // Background heart floating effect
-        function startHearts() {
-            const bg = document.getElementById('heartsBg');
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.innerHTML = '❤️';
-                heart.classList.add('floating-heart');
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                bg.appendChild(heart);
+        noBtn.addEventListener('mouseenter', moveNoButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
 
-                // Remove heart after animation ends
-                setTimeout(() => {
-                    heart.remove();
-                }, 5000);
-            }, 300);
+        // স্ক্রিনে হার্ট তৈরি করার ফাংশন
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // বিভিন্ন ধরণের হার্ট ইমোজি র্যান্ডমলি আসবে
+            const heartIcons = ['❤️', '💖', '💘', '💝', '💕'];
+            heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            
+            // র্যান্ডম সাইজ এবং পজিশন
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s"; // ৩ থেকে ৫ সেকেন্ডের মধ্যে পড়বে
+            heart.style.fontSize = Math.random() * 20 + 20 + "px"; // ২০px থেকে ৪০px সাইজ
+            
+            document.body.appendChild(heart);
+
+            // অ্যানিমেশন শেষ হলে হার্টটি রিমুভ হয়ে যাবে যেন ব্রাউজার স্লো না হয়
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // 'Yes' বাটনে ক্লিক করলে যা হবে
+        function celebrate() {
+            question.innerHTML = "I knew it! ❤️ 🎉<br><span style='font-size: 1.5rem; color: #fff;'>Love You Forever!</span>";
+            question.style.color = "#fff";
+            
+            noBtn.style.display = 'none'; 
+            yesBtn.style.display = 'none';
+            
+            document.body.style.background = '#ff4d6d'; // ব্যাকগ্রাউন্ড গাঢ় লাল হবে
+            
+            // অনবরত হার্ট পড়তে থাকবে
+            setInterval(createHeart, 150);
         }
     </script>
+
 </body>
 </html>
